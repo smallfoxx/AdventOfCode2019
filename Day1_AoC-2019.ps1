@@ -4,7 +4,12 @@ Day1_AoC-2019
 
 #>
 [Cmdletbinding()]
-param([parameter(ValueFromPipeline=$true)][int64]$ModuleMass,
+param(
+    [parameter(ValueFromPipeline=$true)]
+    [int64]
+    $ModuleMass,
+
+    [Alias("Part2","PartTwo")]
     [switch]$IncludeFuel)
 
 Begin {
