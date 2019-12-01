@@ -15,8 +15,7 @@ Begin {
         If ($Mass -ge 9) {
             $Fuel = [math]::Floor($Mass/3)-2
             If ($Recurse) {
-                $Fuel += (GetFuel -Mass $Fuel -Recurse:$Recurse)
-                Write-Host "$Mass`: $Fuel"
+                $Fuel += GetFuel -Mass $Fuel -Recurse:$Recurse
             } 
             return $Fuel 
         } else {
@@ -28,17 +27,13 @@ Begin {
 }
 
 Process {
-    $ThisFuel = (GetFuel -Mass $ModuleMass)
+    $ThisFuel = GetFuel -Mass $ModuleMass
     If ($IncludeFuel) {
-        $ThisFuel += (GetFuel -Mass $ThisFuel -Recurse)
+        $ThisFuel += GetFuel -Mass $ThisFuel -Recurse
     }
     $TotalFuel += $ThisFuel 
 }
 
 End {
-    If ($IncludeFuel) {
-        return ($TotalFuel )#+ (GetFuel -Mass $TotalFuel -Recurse))
-    } else {
-        return $TotalFuel
-    }
+    return $TotalFuel
 }
