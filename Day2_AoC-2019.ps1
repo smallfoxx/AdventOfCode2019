@@ -50,12 +50,12 @@ process {
                             ProcessCode -Position $Pos
                             $Pos += 4
                         } else {
-                            Write-Host ("{0}`: {1}" -f $Pos,(($Pos..($Pos+3)|%{ $Codes[$_]}) -join ","))
+                            Write-Host ("Out of Range! {0}`: {1}" -f $Pos,(($Pos..($Pos+3)|%{ $Codes[$_]}) -join ",")) -ForegroundColor Red
                             break
                         }
                     }
                     If ($Codes[0] -eq $Desired) {
-                        Write-Host "Noun: $Noun   Verb: $Verb   Error Code: $($Noun*100+$Verb)"
+                        Write-Host "Noun: $Noun   Verb: $Verb   Error Code: $($Noun*100+$Verb)" -ForegroundColor Green
                         $Found = $true
                         break
                     }
